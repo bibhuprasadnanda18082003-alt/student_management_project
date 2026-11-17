@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f4f6fa;
+            --surface: #fff;
+            --text: #1b2437;
+            --muted: #667085;
+            --border: #e4e8f0;
+            --primary: #2f4bd8;
+            --primary-dark: #2339b0;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Inter, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        h1 { margin: 0; font-size: 24px; }
+
+        p {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back {
+            color: var(--text);
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        .submit {
+            background: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .submit:hover { background: var(--primary-dark); }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 24px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.04);
+        }
+
+        .form-title {
+            margin: 0 0 25px;
+            font-size: 19px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .full { grid-column: 1/-1; }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #cfd6e4;
+            border-radius: 8px;
+            font: inherit;
+            font-size: 14px;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(47,75,216,.12);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media(max-width: 520px) {
+            .header-inner, main { padding: 18px 15px; }
+            .form-container { padding: 20px; }
+            .grid { grid-template-columns: 1fr; }
+            .full { grid-column: auto; }
+            .actions { flex-direction: column-reverse; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div>
+            <h1>Add Student</h1>
+            <p>Register a new student in the system</p>
+        </div>
+
+        <a href="/" class="btn back">← Back to Home</a>
+    </div>
+</header>
+
+<main>
+
+    <div class="form-container">
+
+        <h2 class="form-title">Student Information</h2>
+
+        <form action="/students/add" method="post">
+
+            <div class="grid">
+
+                <div class="field full">
+                    <label for="name">Student Name</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           placeholder="Enter student name"
+                           required>
+                </div>
+
+                <div class="field">
+                    <label for="age">Age</label>
+                    <input type="number"
+                           id="age"
+                           name="age"
+                           min="18"
+                           max="30"
+                           placeholder="18 - 30"
+                           required>
+                </div>
+
+                <div class="field">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="marks">Marks</label>
+                    <input type="number"
+                           id="marks"
+                           name="marks"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100"
+                           required>
+                </div>
+
+                <div class="field">
+                    <label for="status">Attendance Status</label>
+                    <select id="status" name="status" required>
+                        <option value="1">Present</option>
+                        <option value="0">Absent</option>
+                    </select>
+                </div>
+
+                <div class="field full">
+                    <label for="course">Course</label>
+                    <input type="text"
+                           id="course"
+                           name="course"
+                           placeholder="Enter course name"
+                           required>
+                </div>
+
+                <div class="field full">
+                    <label for="image">Student Image URL</label>
+                    <input type="url"
+                           id="image"
+                           name="image"
+                           placeholder="https://example.com/image.jpg"
+                           required>
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <a href="/" class="btn back">Cancel</a>
+                <button type="submit" class="btn submit">
+                    Add Student
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>
